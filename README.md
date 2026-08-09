@@ -147,6 +147,19 @@ Each run appends/overwrites `data/results/<task_id>__<model_name>.json`
 field), and regenerates all `data/results/pass_rate_by_*.csv` and
 `figures/pass_rate_by_*.png` files.
 
+## CI Verification
+
+On August 9, 2026, the pension task's oracle test was deliberately
+broken -- `EXPECTED_ANSWER` was changed from `455_500.00` to an
+incorrect value -- on a throwaway branch called `ci-failure-proof`, to
+confirm that the GitHub Actions workflow actually fails on a real
+regression rather than passing unconditionally. The test failed as
+expected (the CI run reported a "Failure" status, with
+`test_oracle_passes` raising the assertion), confirming that the
+pipeline provides genuine validation rather than a green check by
+default. The branch was deleted after verification, and `main` was
+never affected.
+
 ## Adding your real Dynamo/Feather tasks
 
 **Read the confidentiality note above first.** If a task is still live

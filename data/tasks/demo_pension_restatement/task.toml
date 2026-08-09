@@ -1,0 +1,28 @@
+[task]
+id = "demo_pension_restatement"
+domain = "accounting_asc715"
+title = "Net Periodic Pension Cost with Mid-Year Partial Accrual Freeze"
+difficulty = "hard"
+failure_family = "temporal_coupling"
+failure_family_name = "temporal_coupling"
+timeout_sec = 1800
+
+[oracle]
+answer_type = "numeric"
+answer = 455500.00
+tolerance_pct = 1.0
+
+[metadata]
+category = "business_operations"
+subcategory = "pension_accounting"
+source = "fictionalized, mechanism-faithful reconstruction of a real Dynamo task pattern -- not the original task content"
+
+[artifacts]
+# The three messy source artifacts, mirroring the real Dynamo task's
+# structure. The current single-turn text harness embeds the same
+# facts directly in instruction.md so it can be solved via a plain
+# chat completion; these files exist for realism and for an eventual
+# agentic (tool-using) harness upgrade.
+sqlite_db = "environment/data/plan_data.db"
+spreadsheet = "environment/data/assumptions.xlsx"
+plan_document_pdf = "environment/data/plan_document.pdf"

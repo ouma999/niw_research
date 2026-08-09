@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate-tasks-and-pipeline:
+    name: validate-tasks-and-pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Validate pension task oracle and distractor tiers
+        run: cd data/tasks/demo_pension_restatement/tests && python3 test_outputs.py
+
+      - name: Validate FX task oracle and distractor tiers
+        run: cd data/tasks/demo_fx_consolidation/tests && python3 test_outputs.py
+
+      - name: Smoke-test pipeline end to end (mock provider, no API key)
+        run: cd src && python3 run_pipeline.py --provider mock

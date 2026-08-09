@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+
+# macOS
+.DS_Store
+
+# Generated output -- recreated by run_pipeline.py, not source
+data/results/*
+!data/results/eval_summary.md
+figures/
